@@ -66,12 +66,30 @@ body {
   text-align: center;
 }
 
+<<<<<<< HEAD
 #big-button {
   position: fixed;
   bottom: 0px;
   width: 100px;
   background-color: green;
   color: white;
+=======
+#storytable{
+
+  padding-top: 70px;
+
+
+}
+
+
+
+#big-button{
+   position: fixed;
+   bottom: 0px;
+   width: 100px;
+   background-color: green;
+   color: white;
+>>>>>>> cb21658ab5256e2583b65f3a0d2651e060479db7
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;

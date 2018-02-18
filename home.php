@@ -21,5 +21,57 @@
 
   <li style="float:left"><a class="active" href="#about">330news</a></li>
 </ul>
+
+<div id="storytable">
+
+<?php
+echo '<table style="width:100%">';
+echo "<tr>";
+echo "<th>Title</th>";
+echo "<th>Author</th>";
+echo "<th>Read Button</th>";
+echo "</tr>";
+
+
+
+
+require 'database.php';
+
+$stmt = $mysqli->prepare("select storyid, title, author from stories");
+if(!$stmt){
+	printf("Query Prep Failed: %s\n", $mysqli->error);
+	exit;
+}
+
+$stmt->execute();
+
+$result = $stmt->get_result();
+
+
+while($row = $result->fetch_assoc()){
+
+  echo "<tr>";
+  printf("<th>%s</th>",$row["title"]);
+  printf("<th>%s</th>",$row["author"]);
+  echo "<th><form action=\"storypage.php\" method=\"post\">";
+  echo "<input type=\"submit\" name=\"storyid\" value=\"Read\"/>";
+  printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["author"] );
+  echo "</form></th>";
+  echo "</tr>";
+}
+echo "</table>";
+
+$stmt->close();
+?>
+</div>
+
+
+
+
+
+
+
+
+
 </body>
 </html>
