@@ -55,9 +55,10 @@ Posting as <?php echo $_SESSION['user'];?>
  </div>
 
  <?php
+session_start();
  require 'database.php';
 
- $author==$_SESSION['user'];
+ $author=$_SESSION['user'];
  $authorid=$_SESSION['uid'];
  $date=date('l jS \of F Y h:i:s A');
  $body = $_POST['body'];
@@ -66,13 +67,13 @@ Posting as <?php echo $_SESSION['user'];?>
  $clicks=null;
 
 
- $stmt = $mysqli->prepare("insert into stories (author, authorid, date, body, title, clicks) values (?, ?, ?, ?, ?, ?)");
+ $stmt = $mysqli->prepare("insert into stories (author, authorid, date, body, title, clicks, link) values (?, ?, ?, ?, ?, ?,?)");
  if(!$stmt){
  	printf("Query Prep Failed: %s\n", $mysqli->error);
  	exit;
  }
 
- $stmt->bind_param('sssssi', $author, $authorid,$date,$body,$title,$link,$clicks );
+ $stmt->bind_param('sisssis', $author, $authorid,$date,$body,$title,$clicks,$link);
 
  $stmt->execute();
 
