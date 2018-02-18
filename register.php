@@ -21,7 +21,7 @@ Please Register If You Would Like To Post Stories and Comment
 <br>
 <br>
 Have an account?
-<button type="button">Go to Login Page</button>
+<button  href="login.php" type="button">Go to Login Page</button>
 
   </p>
 </div>
@@ -57,7 +57,7 @@ Have an account?
  if(!hash_equals($_SESSION['token'], $_POST['token'])){
  	die("Request forgery detected");
  }
- 
+
  $user = $_POST['username'];
  $password = $_POST['password'];
  $hash=password_hash($password, PASSWORD_BCRYPT);
