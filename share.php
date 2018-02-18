@@ -31,7 +31,7 @@ $link = $_POST['link'];
 $emailAddress = $_POST['emailaddress'];
 $subject = $user . " has shared a story with you!";
 $body = "Title: " . $storyName . "\n\nLink to story:\n" . $link;
-$headers = "From: webmaster@example.com";
+$headers = "From: news@gmail.com";
 
 mail($emailAddress, $subject, $body, $headers);
 
