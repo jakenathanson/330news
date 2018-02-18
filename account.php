@@ -82,20 +82,8 @@ $stmt->fetch();
 // Compare the submitted password to the old password
 if($cnt == 1 && password_verify($oldP, $pwd_hash)){
   // Confirm user entered same new password
-  if ((strcmp($first, $second) == 0)) {
-
-
-
-
-
-  }
-  else{
-
-echo("<script>alert(\"Your New Passwords Don't Match. Try Again\"); </script>");}
-
-  }
-
-  echo "working";
+  if ((strcmp($first, $second) == 0)) { }
+  else{ echo("<script>alert(\"Your New Passwords Don't Match. Try Again\"); </script>");}
 }
 else {
   if($oldP){
