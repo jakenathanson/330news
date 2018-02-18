@@ -109,3 +109,7 @@ tr {
   float: left;
   padding: 5px;
 }
+
+#account_data {
+  padding-top: 60px;
+}

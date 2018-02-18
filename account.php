@@ -26,39 +26,38 @@
 
   <div id="account_data">
 
-    <?php
-    <?php echo $_SESSION['user'];?>
+    <div id="usernamechange">
+      Change username
+      <form action="changeusername.php" method="post" id="usernameform">
+        <label for="newName">New username: </label><input type="text" name="newUsername1" required><br>
+        <label for="newNameConfirm">Confirm new username: </label><input type="text" name="newUsername2" required><br>
+        <input type="submit" value="Go">
+      </form>
+      <br><br>
+    </div>
 
-    require 'database.php';
+    <div id="passwordchange">
+      Change password
+      <form action="changepassword.php" method="post" id="pwdform">
+        <label for="oldPwd">Old password: </label><input type="text" name="oldPwd" required><br>
+        <label for="newPwd1">New password: </label><input type="password" name="newPwd1" required><br>
+        <label for="newNameConfirm">Confirm new password: </label><input type="password" name="newPwd2" required><br>
+        <input type="submit" value="Go">
+      </form>
+      <br><br>
+    </div>
 
-    // get UI contents of 'stories' table
-    $stmt = $mysqli->prepare("select storyid, title, author from stories");
-    if(!$stmt){
-      printf("Query Prep Failed: %s\n", $mysqli->error);
-      exit;
-    }
-    $stmt->execute();
+    <div id="emailchange">
+      Update email address
+      <form action="updateemail.php" method="post" id="emailform">
+        <label for="newEmail1">New email address: </label><input type="email" name="newEmail1"><br>
+        <label for="newEmail1">Confirm email address: </label><input type="email" name="newEmail2"><br>
+        <input type="submit" value="go">
+      </form>
+    </div>
 
-    // bind result, use array for display purposes
-    $result = $stmt->get_result();
-
-    // iteratively generate html table with database contents
-    while($row = $result->fetch_assoc()){
-      echo "<tr>";
-      printf("<td>%s</td>",$row["title"]);
-      printf("<td>%s</td>",$row["author"]);
-      // create form for viewing stories (storyid passed as post)
-      echo "<td><form action=\"storypage.php\" method=\"post\">";
-      echo "<input type=\"submit\" name=\"storyid\" value=\"Read\"/>";
-      printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["storyid"] );
-      echo "</form></td>";
-      echo "</tr>";
-    }
-    echo "</table>";
-
-    $stmt->close();
-    ?>
   </div>
+</div>
 
 </body>
 </html>

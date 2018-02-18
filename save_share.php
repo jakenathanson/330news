@@ -13,6 +13,7 @@ if (strcmp($action, "save") == 0) {
     mail($_SESSION['emailaddress'], 'Saved Article', $link);
   } else {
     echo("<script>alert(\"No user email address set! Add an email address in your account settings to save stories.\")</script>");
+    exit;
   }
 } else if (strcmp($action, "share") == 0) {
   echo("<form action=\"share.php\" method=\"post\">");
