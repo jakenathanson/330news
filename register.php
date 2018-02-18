@@ -51,6 +51,7 @@ Have an account?
  </div>
 
  <?php
+ error_reporting(0);
  require 'database.php';
  if(!empty($_POST)) {
  if(!hash_equals($_SESSION['token'], $_POST['token'])){
