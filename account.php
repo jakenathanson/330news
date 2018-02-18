@@ -64,8 +64,8 @@
 // For infosec we decided to process passwords on same page
 require 'database.php';
 $oldP = $_POST['oldPwd'];
-$first = $_POST['NewPwd1'];
-$second = $_POST['NewPwd2'];
+$first = $_POST['newPwd1'];
+$second = $_POST['newPwd2'];
 $uid=$_SESSION['uid'];
 
 // Use a prepared statement
@@ -82,12 +82,34 @@ $stmt->fetch();
 // Compare the submitted password to the old password
 if($cnt == 1 && password_verify($oldP, $pwd_hash)){
   // Confirm user entered same new password
-  if ((strcmp($first, $second) == 0)) { }
-  else{ echo("<script>alert(\"Your New Passwords Don't Match. Try Again\"); </script>");}
+  if ((strcmp($first, $second) == 0)) {
+    //update new pass
+
+    $hash=password_hash($first, PASSWORD_BCRYPT);
+
+    $stmt = $mysqli->prepare("update users set password=? where uid=?");
+    if(!$stmt){
+    	printf("Query Prep Failed: %s\n", $mysqli->error);
+    	exit;
+    }
+
+    $stmt->bind_param('si', $hash, $uid);
+
+    $stmt->execute();
+
+    $stmt->close();
+
+
+    echo("<script>alert(\"PASSWORD UPDATED!\"); </script>");
+
+  }
+  else{ echo("<script>alert(\"Your New Passwords Don't Match. Try Again\"); </script>");
+  }
 }
 else {
   if($oldP){
-    echo("<script>alert(\"Your Old Password is incorrect. Try Again\"); </script>");}
+    echo("<script>alert(\"Your Old Password is incorrect. Try Again\"); </script>");
+  }
 }
 
 
