@@ -47,14 +47,14 @@ Posting as <?php echo $_SESSION['user'];?>
   <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" id="story-post">
      <p>
         <h2> Title: </h2>
-       <input type="text" name="title" id="title" value="<?php echo $_SESSION['title']; ?>" required/>
+       <input type="text" name="title" id="title" value="<?php echo $_POST['title']; ?>" required/>
      </p>
      <p>
        <h2> Optional Link: </h2>
-       <input type="text"value="<?php echo $_SESSION['link']; ?>" name="link" id="link"/>
+       <input type="text"value="<?php echo $_POST['link']; ?>" name="link" id="link"/>
      </p>
      <h2> Story goes here: </h2>
-     <textarea rows="10" cols="100" name="body" form="story-post" required><?php echo $_SESSION['body'];?></textarea>
+     <textarea rows="10" cols="100" name="body" form="story-post" required><?php echo $_POST['body'];?></textarea>
      <p>
        <input type="submit" value="Click to Update" style="position: fixed;
        bottom: 0px;
@@ -77,7 +77,7 @@ Posting as <?php echo $_SESSION['user'];?>
  require 'database.php';
 
  $author=$_SESSION['user'];
- $storyID=$_SESSION['storyid'];
+ $storyID=$_POST['storyid'];
  $authorid=$_SESSION['uid'];
  $date=date('l jS \of F Y h:i:s A');
  $body = $_POST['body'];
@@ -88,7 +88,7 @@ Posting as <?php echo $_SESSION['user'];?>
  printf("author: %s\n authorid: %s\n date: %s\n body: %s\n title: %s\n link: %s\n clicks: %s\n", $author, $authorid, $date, $body, $title, $link, $clicks);
 
 
- $stmt = $mysqli->prepare("update stories set (author, authorid, date, body, title, clicks, link) values (?, ?, ?, ?, ?, ?,?) WHERE storyid=(?)");
+ $stmt = $mysqli->prepare("update stories set (author, authorid, date, body, title, clicks, link) values (?, ?, ?, ?, ?, ?,?) WHERE storyid=?");
  if(!$stmt){
  	printf("Query Prep Failed: %s\n", $mysqli->error);
  	exit;
