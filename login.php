@@ -69,7 +69,7 @@ if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 	$_SESSION['uid'] = $user_id;
   $_SESSION['user'] = $user;
   $_SESSION['email'] = $email;
-  $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));.
+  $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
   header ('Location: home.php');
 
 } else{

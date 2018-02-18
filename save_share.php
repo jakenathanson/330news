@@ -12,8 +12,9 @@ $action = $_POST['whatAction'];
 $link = "http://ec2-18-219-35-131.us-east-2.compute.amazonaws.com/~rfreret/330-News/interim.php?id=" . $id;
 
 if (strcmp($action, "save") == 0) {
-  if (isset($_SESSION['emailaddress'])) {
-    mail($_SESSION['emailaddress'], 'Saved Article', $link);
+  if (isset($_SESSION['email'])) {
+    mail($_SESSION['email'], 'Saved Article', $link);
+		header('Location: storypage.php');
   } else {
     echo("<script>alert(\"No user email address set! Add an email address in your account settings to save stories.\"); location=\"home.php\";</script>");
   }

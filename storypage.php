@@ -49,6 +49,7 @@ echo("<div id=\"articledisplay\" class=\"article\">");
 printf("<div id=\"headline\" class=\"article\">%s</div>", $title);
 printf("<div id=\"date\" class=\"article\"><br>Posted on: %s</div>", $date);
 printf("<div id=\"author\" class=\"article\">By: %s<br><br></div>", $author);
+printf("<div id=\"link\" class=\"article\">External links: %s<br><br></div>", $link);
 printf("<div id=\"articlebody\" class=\"article\">%s<br><br></div>", $body);
 
 echo("<div id=\"actions\">");

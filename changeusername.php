@@ -27,6 +27,16 @@ if (((strcmp($first, $second))==0)) {
   $stmt->execute();
   $stmt->close();
   $_SESSION['user']=$newname;
+
+  $stmt = $mysqli->prepare("update stories set author=? where authorid=?");
+  if (!$stmt) {
+    printf("Query Prep Failed: %s\n", $mysqli->error);
+  	exit;
+  }
+  $stmt->bind_param('si', $newname, $uid);
+  $stmt->execute();
+  $stmt->close();
+
   // redirect to poststory
   header('Location: home.php');
 
