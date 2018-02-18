@@ -52,12 +52,12 @@ Have an account?
 
  <?php
  require 'database.php';
- session_start();
-
+ if(!empty($_POST)) {
  if(!hash_equals($_SESSION['token'], $_POST['token'])){
  	die("Request forgery detected");
  }
- 
+}
+
  $user = $_POST['username'];
  $password = $_POST['password'];
  $hash=password_hash($password, PASSWORD_BCRYPT);
