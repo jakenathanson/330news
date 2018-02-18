@@ -21,7 +21,7 @@ Please Register If You Would Like To Post Stories and Comment
 <br>
 <br>
 Have an account?
-<button  href="login.php" type="button">Go to Login Page</button>
+<button><a href="login.php"> Go to Login </a></button>
 
   </p>
 </div>
