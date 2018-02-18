@@ -27,6 +27,8 @@
   <div id="account_data">
 
     <div id="usernamechange">
+      <h2> Current Username:<?php echo $_SESSION['user'] ?> </h2>
+
       Change username
       <form action="changeusername.php" method="post" id="usernameform">
         <label for="newName">New username: </label><input type="text" name="newUsername1" required><br>
@@ -38,7 +40,7 @@
 
     <div id="passwordchange">
       Change password
-      <form action="changepassword.php" method="post" id="pwdform">
+      <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" id="pwdform">
         <label for="oldPwd">Old password: </label><input type="text" name="oldPwd" required><br>
         <label for="newPwd1">New password: </label><input type="password" name="newPwd1" required><br>
         <label for="newNameConfirm">Confirm new password: </label><input type="password" name="newPwd2" required><br>
@@ -58,6 +60,41 @@
 
   </div>
 </div>
+
+<?php
+require 'database.php';
+$oldP = $_POST['oldPwd'];
+$first = $_POST['NewPwd1'];
+$second = $_POST['NewPwd2'];
+$uid=$_SESSION['uid'];
+
+// Use a prepared statement
+$stmt = $mysqli->prepare("SELECT COUNT(*), password FROM users WHERE uid=?");
+
+// Bind the parameter
+$stmt->bind_param('i', $uid);
+$stmt->execute();
+
+// Bind the results
+$stmt->bind_result($cnt,$pwd_hash);
+$stmt->fetch();
+
+// Compare the submitted password to the actual password hash
+if($cnt == 1 && password_verify($oldP, $pwd_hash)){
+
+  if ((strcmp($first, $second) == 0) {
+    # code...
+  }
+
+  echo "working";
+
+}
+
+
+
+
+?>
+
 
 </body>
 </html>
