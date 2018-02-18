@@ -11,7 +11,7 @@
 
   session_start();
   if (isset($_SESSION['uid'])){
-    echo '<li style="float:right; background-color: red;"><a class="active" href="login.php">Logout</a></li>';
+    echo '<li style="float:right; background-color: red;"><a class="active" href="destroy.php">Logout</a></li>';
     echo '<li style="float:right; background-color: green;"><a class="active" href="post-story.php">Post a Story</a></li>';
   } else {
     echo'<li style="float:right; background-color: green;"" ><a class="active" href="register.php">Register</a></li>';
@@ -23,8 +23,6 @@
 </ul>
 
 <div id="storytable">
-
-  <?php printf("<br><br><br>%s", $_SESSION['uid']); ?>
 
 <?php
 echo '<table style="width:100%">';

@@ -51,7 +51,7 @@ if (isset($_SESSION['uid'])) {
     printf("<input type=\"hidden\" name=\"link\" value=\"%s\"></form>", $link);
     echo("<form action=\"remove-story.php\" method\"post\">");
     printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
-    ehco("</form>")
+    ehco("</form>");
   }
   echo("Submit a comment");
   echo("<form action=\"post-comment.php\" method=\"post\">");
