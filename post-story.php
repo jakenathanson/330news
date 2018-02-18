@@ -78,9 +78,11 @@ Posting as <?php echo $_SESSION['user'];?>
 
  require 'database.php';
  date_default_timezone_set('America/Chicago');
+ if(!empty($_POST)) {
  if(!hash_equals($_SESSION['token'], $_POST['token'])){
  	die("Request forgery detected");
  }
+}
 
 
  $author=$_SESSION['user'];
