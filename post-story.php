@@ -101,18 +101,20 @@ Posting as <?php echo $_SESSION['user'];?>
  $stmt->execute();
  $stmt->close();
 
- $stmt = $mysqli->prepare("select max(storyid) from stories");
+ $stmt = $mysqli->prepare("select max(storyid) from stories where authorid=? limit 1");
  if(!$stmt){
  	printf("Query Prep Failed: %s\n", $mysqli->error);
  	exit;
  }
+ $stmt->bind_param('i', $authorid);
  $stmt->execute();
  $stmt->bind_result($lastRowID);
  $stmt->fetch();
  $stmt->close();
+ echo($lastRowID);
 
- $_SESSION['currStory'] = ($lastRowID + 1);
- header('Location: ' . 'interim?id=' . ($lastRowID + 1));
+ $_SESSION['currStory'] = ($lastRowID);
+ header('Location: storypage.php');
 
  ?>
 
