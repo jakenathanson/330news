@@ -47,7 +47,7 @@ Please Login If You Would Like To Post and Comment
 require 'database.php';
 
 // Use a prepared statement
-$stmt = $mysqli->prepare("SELECT COUNT(*), uid, password FROM Users WHERE username=?");
+$stmt = $mysqli->prepare("SELECT COUNT(*), uid, password FROM users WHERE username=?");
 
 // Bind the parameter
 $stmt->bind_param('s', $user);

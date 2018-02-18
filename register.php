@@ -52,7 +52,7 @@ Have an account?
  $password = $_POST['password'];
  $hash=password_hash($password, PASSWORD_BCRYPT);
 
- $stmt = $mysqli->prepare("insert into Users (username, password) values (?, ?)");
+ $stmt = $mysqli->prepare("insert into users (username, password) values (?, ?)");
  if(!$stmt){
  	printf("Query Prep Failed: %s\n", $mysqli->error);
  	exit;
