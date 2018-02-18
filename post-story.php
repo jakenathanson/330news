@@ -4,11 +4,11 @@
     <link rel="stylesheet" type="text/css" href="main.css">
   </head>
 
-  <ul>
+  <!--<ul>
     <li style="float:left"><a class="active" href="#about">330news</a></li>
     <li style="float:right"><a class="active" href="#about">Register</a></li>
     <li style="float:right"><a class="active" href="#about">Login</a></li>
-  </ul>
+  </ul>-->
 
 
 
@@ -66,6 +66,8 @@ session_start();
  $link = $_POST['link'];
  $clicks=null;
 
+ printf("author: %s\n authorid: %s\n date: %s\n body: %s\n title: %s\n link: %s\n clicks: %s\n", $author, $authorid, $date, $body, $title, $link, $clicks);
+
 
  $stmt = $mysqli->prepare("insert into stories (author, authorid, date, body, title, clicks, link) values (?, ?, ?, ?, ?, ?,?)");
  if(!$stmt){
@@ -78,6 +80,8 @@ session_start();
  $stmt->execute();
 
  $stmt->close();
+
+
  ?>
 
 
