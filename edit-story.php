@@ -54,9 +54,9 @@ Posting as <?php echo $_SESSION['user'];?>
        <input type="text"value="<?php echo $_SESSION['link']; ?>" name="link" id="link"/>
      </p>
      <h2> Story goes here: </h2>
-     <textarea rows="10" cols="100" name="body" value="<?php echo $_SESSION['body']; ?>" form="story-post" required></textarea>
+     <textarea rows="10" cols="100" name="body" form="story-post" required><?php echo $_SESSION['body'];?></textarea>
      <p>
-       <input type="submit" value="Click to Edit" style="position: fixed;
+       <input type="submit" value="Click to Update" style="position: fixed;
        bottom: 0px;
        left: 0px;
        right: 0px;
