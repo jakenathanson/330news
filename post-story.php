@@ -5,9 +5,18 @@
   </head>
 
   <ul>
+    <?php
+    session_start();
+    if ($_SESSION['uid']){
+      echo '<li style="float:right; background-color: red;"><a class="active" href="login.php">Logout</a></li>';
+      echo '<li style="float:right; background-color: green;"><a class="active" href="home.php">Home</a></li>';
+    } else {
+      header ('Location: home.php');
+    }
+    ?>
+
     <li style="float:left"><a class="active" href="#about">330news</a></li>
-    <li style="float:right"><a class="active" href="#about">Register</a></li>
-    <li style="float:right"><a class="active" href="#about">Login</a></li>
+    
   </ul>
 
 
