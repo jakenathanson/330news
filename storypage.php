@@ -56,16 +56,23 @@ echo("</div>");
 echo("<div id=\"comments\">");
 echo("Comments<br><br>");
 //echo("<ul>");
-$stmt = $mysqli->prepare("select text, commenter, commenterid, stamp, upvotes, downvotes from comments where loc=?");
+$stmt = $mysqli->prepare("select text, commenter, commenterid, stamp, upvotes, downvotes, commentid from comments where loc=?");
 if (!$stmt) {
   printf("Query Prep Failed: %s\n", $mysqli->error);
 	exit;
 }
 $stmt->bind_param('i', $storyID);
 $stmt->execute();
-$stmt->bind_result($text, $commenter, $commenterID, $commentTime, $upvotes, $downvotes);
+$stmt->bind_result($text, $commenter, $commenterID, $commentTime, $upvotes, $downvotes, $commentID);
 while ($stmt->fetch()) {
-  printf("At %s, %s wrote:<br>\"%s\"<br><br>", $commentTime, $commenter, $text);
+  printf("At %s, %s wrote:<br>\"%s\"<br>", $commentTime, $commenter, $text);
+  if (isset($_SESSION['uid'])) {
+    if ($_SESSION['uid'] == $commenterID) {
+      echo("<form action=\"delete-comment.php\" method=\"post\">");
+      echo("<input type=\"submit\" name=\"button\" value=\"Delete\">");
+      printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form>", $commentID);
+    }
+  }
 }
 $stmt->close();
 //echo("</ul>");
