@@ -65,7 +65,8 @@ $pwd_guess = $_POST['password'];
 if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 	// Login succeeded!
 	$_SESSION['uid'] = $user_id;
-  $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+  $_SESSION['user'] = $user;
+  $_SESSION['token']= bin2hex(openssl_random_pseudo_bytes(32));
 	header("Location: http://www.cnn.com/");
 } else{
 	// Login failed; redirect back to the login screen

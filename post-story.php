@@ -16,7 +16,6 @@
 
 <?php session_start();
 $uid=$_SESSION['uid'];?>
-
 // end infosec
 
 
@@ -26,7 +25,7 @@ $uid=$_SESSION['uid'];?>
 
 <div id="message">
 <h1> Post a Story</h1>
-Posting as <?php echo $var ?>
+Posting as <?php echo $_SESSION['user'];?>
 
 
 
@@ -38,7 +37,11 @@ Posting as <?php echo $var ?>
   <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
      <p>
        <label for="firstnameinput">Title:</label>
-       <input type="text" name="username" id="username"/>
+       <input type="text" name="title" id="title"/>
+     </p>
+     <p>
+       <label for="firstnameinput">Optional Link:</label>
+       <input type="text" name="link" id="link"/>
      </p>
      <p>
        <label for="firstnameinput">Body:</label>
@@ -53,17 +56,23 @@ Posting as <?php echo $var ?>
 
  <?php
  require 'database.php';
- $user = $_POST['username'];
- $password = $_POST['password'];
- $hash=password_hash($password, PASSWORD_BCRYPT);
 
- $stmt = $mysqli->prepare("insert into users (username, password) values (?, ?)");
+ $author==$_SESSION['user'];
+ $authorid=$_SESSION['uid'];
+ $date=date('l jS \of F Y h:i:s A');
+ $body = $_POST['body'];
+ $title = $_POST['title'];
+ $link = $_POST['link'];
+ $clicks=null;
+
+
+ $stmt = $mysqli->prepare("insert into stories (author, authorid, date, body, title, clicks) values (?, ?, ?, ?, ?, ?)");
  if(!$stmt){
  	printf("Query Prep Failed: %s\n", $mysqli->error);
  	exit;
  }
 
- $stmt->bind_param('ss', $user, $hash);
+ $stmt->bind_param('sssssi', $author, $authorid,$date,$body,$title,$link,$clicks );
 
  $stmt->execute();
 
