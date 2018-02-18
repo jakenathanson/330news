@@ -26,8 +26,6 @@ if (isset($_POST['storyid'])) {
 // otherwise, just update variable to reflect current story
 $storyID = $_SESSION['currStory'];
 
-echo($storyID);
-
 // get story information from database
 $stmt = $mysqli->prepare("select title, author, authorid, date, body, link from stories where storyid=?");
 if (!$stmt) {
