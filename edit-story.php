@@ -23,7 +23,7 @@
 
   </ul>
 
-<?php 
+<?php
 $uid=$_SESSION['uid'];?>
 
 <body>
@@ -46,7 +46,7 @@ Posting as <?php echo $_SESSION['user'];?>
         <h2> Title: </h2>
        <input type="text" name="title" id="title" value="<?php echo $_POST['title']; ?>" required/>
        <?php
-       session_start();
+       
        printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       ?>
      </p>
