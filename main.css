@@ -101,3 +101,8 @@ body {
 #headline {
   font-size: 24pt;
 }
+
+.commentAction {
+  float: left;
+  padding: 5px;
+}

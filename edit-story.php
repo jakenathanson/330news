@@ -19,15 +19,8 @@
 
   </ul>
 
-
-
-
-
 <?php session_start();
 $uid=$_SESSION['uid'];?>
-
-
-
 
 <body>
 
@@ -44,7 +37,7 @@ Posting as <?php echo $_SESSION['user'];?>
 
 
   <div id="post-story">
-  <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" id="story-post">
+  <form action="edit-story-database.php" method="POST" id="story-post">
      <p>
         <h2> Title: </h2>
        <input type="text" name="title" id="title" value="<?php echo $_POST['title']; ?>" required/>
@@ -68,39 +61,9 @@ Posting as <?php echo $_SESSION['user'];?>
 
        "/>
      </p>
-
+     <input type="hidden" name="storyid" value="<?php echo($_POST['storyid']); ?>">
    </form>
  </div>
-
- <?php
-
- require 'database.php';
-
- $author=$_SESSION['user'];
- $storyID=$_POST['storyid'];
- $authorid=$_SESSION['uid'];
- $date=date('l jS \of F Y h:i:s A');
- $body = $_POST['body'];
- $title = $_POST['title'];
- $link = $_POST['link'];
- $clicks=null;
-
- printf("author: %s\n authorid: %s\n date: %s\n body: %s\n title: %s\n link: %s\n clicks: %s\n", $author, $authorid, $date, $body, $title, $link, $clicks);
-
-
- $stmt = $mysqli->prepare("update stories set (author, authorid, date, body, title, clicks, link) values (?, ?, ?, ?, ?, ?,?) WHERE storyid=?");
- if(!$stmt){
- 	printf("Query Prep Failed: %s\n", $mysqli->error);
- 	exit;
- }
-
- $stmt->bind_param('sisssisi', $author, $authorid,$date,$body,$title,$clicks,$link,$storyID);
-
- $stmt->execute();
-
- $stmt->close();
-
- ?>
 
 
 </body>

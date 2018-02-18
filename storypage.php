@@ -78,19 +78,23 @@ $stmt->bind_param('i', $storyID);
 $stmt->execute();
 $stmt->bind_result($text, $commenter, $commenterID, $commentTime, $upvotes, $downvotes, $commentID);
 while ($stmt->fetch()) {
-  printf("At %s, %s wrote:<br>\"%s\"", $commentTime, $commenter, $text);
+  printf("At %s, %s wrote:<br>%s<br>", $commentTime, $commenter, $text);
   if (isset($_SESSION['uid'])) {
     if ($_SESSION['uid'] == $commenterID) {
-      echo("<form action=\"delete-comment.php\" method=\"post\">");
+      echo("<div id=\"commentButtons\">");
+      echo("<form action=\"delete-comment.php\" method=\"post\" class=\"commentAction\" onsubmit=\"return confirm('Are you sure you\'d like to delete your comment?')\">");
       echo("<input type=\"submit\" name=\"button\" value=\"Delete\">");
       printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form>", $commentID);
-      echo("<form action=\"edit-comment.php\" method=\"post\">");
+      echo("<form action=\"edit-comment.php\" method=\"post\" class=\"commentAction\">");
       echo("<input type=\"submit\" name=\"button\" value=\"Edit\">");
       printf("<input type=\"hidden\" name=\"commentcontent\" value=\"%s\">", $text);
       printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form><br><br>", $commentID);
+      echo("</div>");
     } else {
-      echo("<br><br>");
+      echo("<br>");
     }
+  } else {
+    echo("<br>");
   }
 }
 $stmt->close();
