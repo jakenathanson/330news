@@ -52,7 +52,7 @@ if (isset($_SESSION['uid'])) {
     printf("<input type=\"hidden\" name=\"body\" value=\"%s\">", $body);
     printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
     printf("<input type=\"hidden\" name=\"link\" value=\"%s\"></form>", $link);
-    echo("<form action=\"remove-story.php\" method\"post\">");
+    echo("<form action=\"delete-story.php\" method\"post\">");
     echo("<input type=\"submit\" value=\"Remove\">");
     printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
     echo("</form>");
