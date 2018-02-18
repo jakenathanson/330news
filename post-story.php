@@ -101,7 +101,7 @@ Posting as <?php echo $_SESSION['user'];?>
  $stmt->execute();
  $stmt->close();
 
- /*$stmt = $mysqli->prepare("select storyid from stories order by storyid desc limit 1");
+ $stmt = $mysqli->prepare("select storyid from stories order by storyid desc limit 1");
  if(!$stmt){
  	printf("Query Prep Failed: %s\n", $mysqli->error);
  	exit;
@@ -112,13 +112,7 @@ Posting as <?php echo $_SESSION['user'];?>
  $stmt->close();
 
  $_SESSION['currStory'] = ($lastRowID + 1);
- echo("this is also a test");
- echo($lastRowID + 1);
- echo("this is a test");
-
- if (isset($_POST['body']) && isset($_POST['title'])) {
-   header('Location: storypage.php');
- }*/
+ header('Location: ' . 'interim?id=' . ($lastRowID + 1));
 
  ?>
 
