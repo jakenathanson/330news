@@ -38,6 +38,7 @@ printf("<div id=\"articlebody\" class=\"article\">%s<br><br></div>", $body);
 echo("</div>");
 
 echo("<div id=\"actions\">");
+echo($_SESSION['uid']);
 if (isset($_SESSION['uid'])) {
   if ($_SESSION['uid'] == $authorid) {
     echo("<a href=\"editstory.php\">Edit</a>");
