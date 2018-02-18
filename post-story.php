@@ -34,29 +34,27 @@ Posting as <?php echo $_SESSION['user'];?>
 
 
   <div id="post-story">
-  <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
+  <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" id="story-post">
      <p>
-       <label for="firstnameinput">Title:</label>
+        <h2> Title: </h2>
        <input type="text" name="title" id="title" required/>
      </p>
      <p>
-       <label for="firstnameinput">Optional Link:</label>
+       <h2> Optional Link: </h2>
        <input type="text" name="link" id="link"/>
      </p>
-     <p>
-       <label for="firstnameinput">Body:</label>
-       <input type="text" name="body" id="body"required/>
-     </p>
-
+     <h2> Story goes here: </h2>
+     <textarea rows="10" cols="100" name="body" form="story-post" required></textarea>
      <p>
        <input type="submit" value="Click to Post" style="position: fixed;
        bottom: 0px;
        left: 0px;
        right: 0px;
        text-align: center;
-       padding: 10px 50%;
+       padding: 25px 50%;
        background-color: green;
        color: white;
+       vertical-align: middle;
 
        "/>
      </p>
