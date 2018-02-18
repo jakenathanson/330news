@@ -1,78 +1,89 @@
-
-
 /* start w3 css help */
 
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+}
+
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #157EFB;
-    position: fixed;
-    top: 0;
-    width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #157EFB;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 li {
-    float: left;
+  float: left;
 }
 
 li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 /* Change the link color to #111 (black) on hover */
+
 li a:hover {
-    background-color: #111;
+  background-color: #111;
 }
+
 /* end w3 css help */
 
 body {
-    background-color:  grey;
+  /*background-color: grey;*/
 }
 
-#loginbox
-{
+#loginbox {
   padding-top: 10px;
   margin: 0 auto;
   width: 100%;
   text-align: center;
   color: white;
 }
-#message
-{
+
+#message {
   padding-top: 100px;
   margin: 0 auto;
   width: 100%;
   text-align: center;
   color: white;
 }
-#body
-{width: 100%;}
 
-#post-story
-{
-text-align: center;
+#body {
+  width: 100%;
 }
 
+#post-story {
+  text-align: center;
+}
 
-
-
-
-
-#big-button{
-   position: fixed;
-   bottom: 0px;
-   width: 100px;
-   background-color: green;
-   color: white;
+#big-button {
+  position: fixed;
+  bottom: 0px;
+  width: 100px;
+  background-color: green;
+  color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
 }
+
+.article {
+  width: 50%;
+  display: inline;
+  font-family: 'open sans';
+  margin: auto;
+}
+
+#

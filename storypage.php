@@ -35,10 +35,8 @@ printf("<div id=\"headline\" class=\"article\">%s</div>", $title);
 printf("<div id=\"date\" class=\"article\">Posted on: %s</div>", $date);
 printf("<div id=\"author\" class=\"article\">By: %s<br><br></div>", $author);
 printf("<div id=\"articlebody\" class=\"article\">%s<br><br></div>", $body);
-echo("</div>");
 
 echo("<div id=\"actions\">");
-echo($_SESSION['uid']);
 if (isset($_SESSION['uid'])) {
   if ($_SESSION['uid'] == $authorid) {
     echo("<a href=\"editstory.php\">Edit</a>");
@@ -65,7 +63,7 @@ $stmt->bind_param('i', $storyID);
 $stmt->execute();
 $stmt->bind_result($text, $commenter, $commenterID, $commentTime, $upvotes, $downvotes, $commentID);
 while ($stmt->fetch()) {
-  printf("At %s, %s wrote:<br>\"%s\"<br>", $commentTime, $commenter, $text);
+  printf("At %s, %s wrote:<br>\"%s\"", $commentTime, $commenter, $text);
   if (isset($_SESSION['uid'])) {
     if ($_SESSION['uid'] == $commenterID) {
       echo("<form action=\"delete-comment.php\" method=\"post\">");
@@ -74,13 +72,15 @@ while ($stmt->fetch()) {
       echo("<form action=\"edit-comment.php\" method=\"post\">");
       echo("<input type=\"submit\" name=\"button\" value=\"Edit\">");
       printf("<input type=\"hidden\" name=\"commentcontent\" value=\"%s\">", $text);
-      printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form>", $commentID);
+      printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form><br><br>", $commentID);
+    } else {
+      echo("<br><br>");
     }
   }
 }
 $stmt->close();
-//echo("</ul>");
 echo("</div>");
+echo("</div>")
 
 ?>
 </body>
