@@ -70,21 +70,24 @@ body {
   text-align: center;
 }
 
-#storytable{
-
-  padding-top: 70px;
-
-
+th {
+  font-size: 16pt;
 }
 
+tr {
+  text-align: center;
+}
 
+#storytable {
+  padding-top: 70px;
+}
 
-#big-button{
-   position: fixed;
-   bottom: 0px;
-   width: 100px;
-   background-color: green;
-   color: white;
+#big-button {
+  position: fixed;
+  bottom: 0px;
+  width: 100px;
+  background-color: green;
+  color: white;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;

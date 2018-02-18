@@ -84,9 +84,6 @@ Posting as <?php echo $_SESSION['user'];?>
  $link = $_POST['link'];
  $clicks=null;
 
- //printf("author: %s\n authorid: %s\n date: %s\n body: %s\n title: %s\n link: %s\n clicks: %s\n", $author, $authorid, $date, $body, $title, $link, $clicks);
-
-
  $stmt = $mysqli->prepare("insert into stories (author, authorid, date, body, title, clicks, link) values (?, ?, ?, ?, ?, ?,?)");
  if(!$stmt){
  	printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -107,12 +104,14 @@ Posting as <?php echo $_SESSION['user'];?>
  $stmt->fetch();
  $stmt->close();
 
- $_SESSION['currStory'] = $lastRowID + 1;
+ $_SESSION['currStory'] = ($lastRowID + 1);
  echo("this is also a test");
- echo($lastRowID);
+ echo($lastRowID + 1);
  echo("this is a test");
- //header('Location: storypage.php');
 
+ if (isset($_POST['body']) && isset($_POST['title'])) {
+   header('Location: storypage.php');
+ }
 
  ?>
 
