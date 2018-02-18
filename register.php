@@ -27,8 +27,6 @@ Have an account?
 </div>
 
 
-
-
   <div id="loginbox">
   <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
      <p>
