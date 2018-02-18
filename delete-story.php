@@ -1,6 +1,9 @@
 <?php
 
 require 'database.php';
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
 
 // get appropriate story id from php post
 $storyID = $_POST['thestoryid'];

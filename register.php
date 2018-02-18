@@ -34,6 +34,10 @@ Have an account?
      <p>
        <label for="firstnameinput">Username:</label>
        <input type="text" name="username" id="username"/>
+       <?php
+       session_start();
+       printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
+      ?>
      </p>
      <p>
        <label for="firstnameinput">Password:</label>
@@ -48,6 +52,12 @@ Have an account?
 
  <?php
  require 'database.php';
+ session_start();
+
+ if(!hash_equals($_SESSION['token'], $_POST['token'])){
+ 	die("Request forgery detected");
+ }
+ 
  $user = $_POST['username'];
  $password = $_POST['password'];
  $hash=password_hash($password, PASSWORD_BCRYPT);

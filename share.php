@@ -1,6 +1,9 @@
 <?php
 require 'database.php';
 session_start();
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
 
 $stmt = $mysqli->prepare("select username from users where uid=?");
 if(!$stmt){

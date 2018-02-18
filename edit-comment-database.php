@@ -1,7 +1,9 @@
 <?php
 
 require 'database.php';
-
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
 
 // startsWith function borrowed from https://stackoverflow.com/questions/9047603/php-string-comapre-with-wildcard
 // credit to stackoverflow user MitMaro
