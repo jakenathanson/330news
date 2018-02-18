@@ -5,7 +5,7 @@
 require 'database.php';
 session_start();
 $first = $_POST['newEmail1'];
-$second = $_POST['newEmail1'];
+$second = $_POST['newEmail2'];
 $uid=$_SESSION['uid'];
 
 if (!$uid||!$first||!$second) {
