@@ -10,9 +10,11 @@
     <form action="edit-comment-database.php" method="post">
     <?php
     session_start();
+    if(!empty($_POST)) {
     if(!hash_equals($_SESSION['token'], $_POST['token'])){
     	die("Request forgery detected");
     }
+  }
 
     // simple form to get new comment text
     printf("<input type=\"text\" name=\"newcomment\" value=\"%s\">", $_POST['commentcontent']);

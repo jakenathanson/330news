@@ -7,9 +7,11 @@
   <ul>
     <?php
     session_start();
+    if(!empty($_POST)) {
     if(!hash_equals($_SESSION['token'], $_POST['token'])){
     	die("Request forgery detected");
     }
+  }
 
     if ($_SESSION['uid']){
       echo '<li style="float:right; background-color: red;"><a class="active" href="login.php">Logout</a></li>';

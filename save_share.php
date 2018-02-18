@@ -14,7 +14,6 @@ $link = "http://ec2-18-219-35-131.us-east-2.compute.amazonaws.com/~rfreret/330-N
 if (strcmp($action, "save") == 0) {
   if (isset($_SESSION['email'])) {
     mail($_SESSION['email'], 'Saved Article', $link);
-		header('Location: storypage.php');
   } else {
     echo("<script>alert(\"No user email address set! Add an email address in your account settings to save stories.\"); location=\"home.php\";</script>");
   }
