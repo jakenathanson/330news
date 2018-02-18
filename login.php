@@ -6,8 +6,8 @@
 
   <ul>
     <li style="float:left"><a class="active" href="#about">330news</a></li>
-    <li style="float:right"><a class="active" href="#about">Register</a></li>
-    <li style="float:right"><a class="active" href="#about">Login</a></li>
+    <li style="float:right"><a class="active" href="register.php">Register</a></li>
+    <li style="float:right"><a class="active" href="home.php">Home/a></li>
   </ul>
 
 

@@ -16,16 +16,16 @@
     ?>
 
     <li style="float:left"><a class="active" href="#about">330news</a></li>
-    
+
   </ul>
 
 
 
-// infosec
+
 
 <?php session_start();
 $uid=$_SESSION['uid'];?>
-// end infosec
+
 
 
 
