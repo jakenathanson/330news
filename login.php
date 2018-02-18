@@ -42,6 +42,7 @@ Please Login If You Would Like To Post and Comment
 
 
  <?php
+ session_destroy();
  session_start();
 // This is a *good* example of how you can implement password-based user authentication in your web application.
 
@@ -67,7 +68,8 @@ if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 	$_SESSION['uid'] = $user_id;
   $_SESSION['user'] = $user;
   $_SESSION['token']= bin2hex(openssl_random_pseudo_bytes(32));
-	
+  header ('Location:home.php');
+
 } else{
 	// Login failed; redirect back to the login screen
 }
