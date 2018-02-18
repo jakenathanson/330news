@@ -4,6 +4,9 @@
 <?php
 date_default_timezone_set('America/Chicago');
 session_start();
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+  die("Request forgery detected");
+}
 
 require 'database.php';
 

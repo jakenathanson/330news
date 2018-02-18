@@ -18,6 +18,9 @@ error_reporting(0);
 
 require 'database.php';
 session_start();
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+	die("Request forgery detected");
+}
 
 // if user accesses a new story, update the session storyid
 if (isset($_POST['storyid'])) {
@@ -57,15 +60,18 @@ if (isset($_SESSION['uid'])) {
     printf("<input type=\"hidden\" name=\"title\" value=\"%s\">", $title);
     printf("<input type=\"hidden\" name=\"body\" value=\"%s\">", $body);
     printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
+    printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
     printf("<input type=\"hidden\" name=\"link\" value=\"%s\"></form>", $link);
     echo("<form action=\"delete-story.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete your story?')\" class=\"commentAction\">");
     echo("<input type=\"submit\" value=\"Remove\">");
+    printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
     printf("<input type=\"hidden\" name=\"thestoryid\" value=\"%s\"></form><br><br>", $storyID);
   }
   // if user is logged in but not the author, display comment form
   echo("Submit a comment");
   echo("<form action=\"post-comment.php\" method=\"post\">");
   echo("<p><input type=\"text\" id=\"commenttext\" name=\"commenttext\"></p>");
+  printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
   printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
   echo("<p><input type=\"submit\" name=\"postcomment\" id=\"postcomment\"></p>");
   echo("</form>");
@@ -97,10 +103,12 @@ while ($stmt->fetch()) {
       echo("<div id=\"commentButtons\">");
       echo("<form action=\"delete-comment.php\" method=\"post\" class=\"commentAction\" onsubmit=\"return confirm('Are you sure you\'d like to delete your comment?')\">");
       echo("<input type=\"submit\" name=\"button\" value=\"Delete\">");
+      printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form>", $commentID);
       echo("<form action=\"edit-comment.php\" method=\"post\" class=\"commentAction\">");
       echo("<input type=\"submit\" name=\"button\" value=\"Edit\">");
       printf("<input type=\"hidden\" name=\"commentcontent\" value=\"%s\">", $text);
+      printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form><br><br>", $commentID);
       echo("</div>");
     } else {

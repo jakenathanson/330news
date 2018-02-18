@@ -7,6 +7,10 @@
   <ul>
     <?php
     session_start();
+    if(!hash_equals($_SESSION['token'], $_POST['token'])){
+    	die("Request forgery detected");
+    }
+
     if ($_SESSION['uid']){
       echo '<li style="float:right; background-color: red;"><a class="active" href="login.php">Logout</a></li>';
       echo '<li style="float:right; background-color: green;"><a class="active" href="home.php">Home</a></li>';
@@ -41,6 +45,10 @@ Posting as <?php echo $_SESSION['user'];?>
      <p>
         <h2> Title: </h2>
        <input type="text" name="title" id="title" value="<?php echo $_POST['title']; ?>" required/>
+       <?php
+       session_start();
+       printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
+      ?>
      </p>
      <p>
        <h2> Optional Link: </h2>

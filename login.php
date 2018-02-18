@@ -29,6 +29,10 @@ Please Login If You Would Like To Post and Comment
      <p>
        <label for="firstnameinput">Username:</label>
        <input type="text" name="username" id="username"/>
+       <?php
+       session_start();
+       printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
+       ?>
      </p>
      <p>
        <label for="firstnameinput">Password:</label>
@@ -45,8 +49,13 @@ Please Login If You Would Like To Post and Comment
  error_reporting(0);
  session_start();
 // This is a *good* example of how you can implement password-based user authentication in your web application.
+if(!hash_equals($_SESSION['token'], $_POST['token'])){
+  die("Request forgery detected");
+}
+
 
 require 'database.php';
+
 
 // Use a prepared statement
 $stmt = $mysqli->prepare("SELECT COUNT(*), uid, password FROM users WHERE username=?");

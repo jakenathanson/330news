@@ -44,6 +44,10 @@ Posting as <?php echo $_SESSION['user'];?>
      <p>
         <h2> Title: </h2>
        <input type="text" name="title" id="title" required/>
+       <?php
+       session_start();
+       printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
+      ?>
      </p>
      <p>
        <h2> Optional Link: </h2>
@@ -74,6 +78,9 @@ Posting as <?php echo $_SESSION['user'];?>
 
  require 'database.php';
  date_default_timezone_set('America/Chicago');
+ if(!hash_equals($_SESSION['token'], $_POST['token'])){
+ 	die("Request forgery detected");
+ }
 
 
  $author=$_SESSION['user'];
