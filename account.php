@@ -52,7 +52,7 @@
 
       <h2> Current Email:<?
       error_reporting(0);
-      php echo $_SESSION['email'] ?> </h2>
+      php echo $_SESSION['email']; ?> </h2>
       Update email address
       <form action="updateemail.php" method="post" id="emailform">
         <label for="newEmail1">New email address: </label><input type="email" name="newEmail1"><br>
