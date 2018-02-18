@@ -48,8 +48,10 @@ if (isset($_SESSION['uid'])) {
     printf("<input type=\"hidden\" name=\"title\" value=\"%s\">", $title);
     printf("<input type=\"hidden\" name=\"body\" value=\"%s\">", $body);
     printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
-    printf("<input type=\"hidden\" name=\"link\" value=\"%s\">", $link);
-    echo("<a href=\"removestory.php\">Delete</a>");
+    printf("<input type=\"hidden\" name=\"link\" value=\"%s\"></form>", $link);
+    echo("<form action=\"remove-story.php\" method\"post\">");
+    printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
+    ehco("</form>");
   }
   echo("Submit a comment");
   echo("<form action=\"post-comment.php\" method=\"post\">");
