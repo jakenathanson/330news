@@ -50,7 +50,7 @@ Posting as <?php echo $_SESSION['user'];?>
       ?>
      </p>
      <p>
-       <h2> Optional Link: </h2>
+       <h2> Optional Link:  Must be "https://"/</h2>
        <input type="text" name="link" id="link"/>
      </p>
      <h2> Story goes here: </h2>
