@@ -101,7 +101,7 @@ Posting as <?php echo $_SESSION['user'];?>
  $stmt->execute();
  $stmt->close();
 
- $stmt = $mysqli->prepare("select storyid from stories order by storyid desc limit 1");
+ $stmt = $mysqli->prepare("select max(storyid) from stories");
  if(!$stmt){
  	printf("Query Prep Failed: %s\n", $mysqli->error);
  	exit;

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require 'database.php';
 if(!hash_equals($_SESSION['token'], $_POST['token'])){
