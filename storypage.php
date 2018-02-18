@@ -71,6 +71,10 @@ while ($stmt->fetch()) {
       echo("<form action=\"delete-comment.php\" method=\"post\">");
       echo("<input type=\"submit\" name=\"button\" value=\"Delete\">");
       printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form>", $commentID);
+      echo("<form action=\"edit-comment.php\" method=\"post\">");
+      echo("<input type=\"submit\" name=\"button\" value=\"Edit\">");
+      printf("<input type=\"hidden\" name=\"commentcontent\" value=\"%s\">", $text);
+      printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form>", $commentID);
     }
   }
 }
