@@ -16,8 +16,7 @@
       echo '<li style="float:right; background-color: red;"><a class="active" href="destroy.php">Logout</a></li>';
       echo '<li style="float:right; background-color: green;"><a class="active" href="home.php">Home</a></li>';
     } else { // otherwise, show "login" and "register"
-      echo'<li style="float:right; background-color: green;"" ><a class="active" href="register.php">Register</a></li>';
-      echo'<li style="float:right; background-color: green;"" ><a class="active" href="login.php">Login</a></li>';
+      header('Location: home.php');
     }
     ?>
 
@@ -62,6 +61,7 @@
 </div>
 
 <?php
+// For infosec we decided to process passwords on same page
 require 'database.php';
 $oldP = $_POST['oldPwd'];
 $first = $_POST['NewPwd1'];
@@ -76,18 +76,30 @@ $stmt->bind_param('i', $uid);
 $stmt->execute();
 
 // Bind the results
-$stmt->bind_result($cnt,$pwd_hash);
+$stmt->bind_result($cnt, $pwd_hash);
 $stmt->fetch();
 
-// Compare the submitted password to the actual password hash
+// Compare the submitted password to the old password
 if($cnt == 1 && password_verify($oldP, $pwd_hash)){
+  // Confirm user entered same new password
+  if ((strcmp($first, $second) == 0)) {
 
-  if ((strcmp($first, $second) == 0) {
-    # code...
+
+
+
+
+  }
+  else{
+
+echo("<script>alert(\"Your New Passwords Don't Match. Try Again\"); </script>");}
+
   }
 
   echo "working";
-
+}
+else {
+  if($oldP){
+    echo("<script>alert(\"Your Old Password is incorrect. Try Again\"); </script>");}
 }
 
 
