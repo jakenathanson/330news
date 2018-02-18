@@ -23,7 +23,7 @@
 
   </ul>
 
-<?php session_start();
+<?php 
 $uid=$_SESSION['uid'];?>
 
 <body>
