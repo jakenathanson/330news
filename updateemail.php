@@ -28,7 +28,7 @@ if (((strcmp($first, $second))==0)) {
   $stmt->close();
   $_SESSION['email']=$mail;
   // redirect to poststory
-  header('Location: account.php');
+  header('Location: home.php');
 
 } else {
 
