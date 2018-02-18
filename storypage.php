@@ -7,7 +7,7 @@
 </head>
 
 <ul>
-  <li><a href="stories.php">Back</a></li>
+  <li><a href="home.php">Back</a></li>
 </ul>
 
 <body>
@@ -38,7 +38,7 @@ printf("<div id=\"articlebody\" class=\"article\">%s<br><br></div>", $body);
 echo("</div>");
 
 echo("<div id=\"actions\">");
-//if (isset($_SESSION['uid'])) {
+if (isset($_SESSION['uid'])) {
   if ($_SESSION['uid'] == $authorid) {
     echo("<a href=\"editstory.php\">Edit</a>");
     echo("<a href=\"removestory.php\">Delete</a>");
@@ -49,7 +49,7 @@ echo("<div id=\"actions\">");
   printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
   echo("<p><input type=\"submit\" name=\"postcomment\" id=\"postcomment\"></p>");
   echo("</form>");
-//}
+}
 echo("</div>");
 
 echo("<div id=\"comments\">");
@@ -65,11 +65,7 @@ $stmt->execute();
 $stmt->bind_result($text, $commenter, $commenterID, $commentTime, $upvotes, $downvotes);
 while ($stmt->fetch()) {
   printf("At %s, %s wrote:<br>\"%s\"<br><br>", $commentTime, $commenter, $text);
-  /*printf("<ul><li>%d up, %d down</li>", $upvotes, $downvotes);
-  printf("<form action=\"")
-  */
 }
-
 $stmt->close();
 //echo("</ul>");
 echo("</div>");
