@@ -49,6 +49,8 @@
     </div>
 
     <div id="emailchange">
+
+      <h2> Current Username:<?php echo $_SESSION['email'] ?> </h2>
       Update email address
       <form action="updateemail.php" method="post" id="emailform">
         <label for="newEmail1">New email address: </label><input type="email" name="newEmail1"><br>
