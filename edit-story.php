@@ -100,7 +100,6 @@ Posting as <?php echo $_SESSION['user'];?>
 
  $stmt->close();
 
-
  ?>
 
 
