@@ -57,6 +57,14 @@
       echo "<td><form action=\"storypage.php\" method=\"post\">";
       echo "<input type=\"submit\" name=\"storyid\" value=\"Read\"/>";
       printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["storyid"] );
+      echo "</form>";
+      echo "<form action=\"storypage.php\" method=\"post\">";
+      echo "<input type=\"submit\" name=\"storyid\" value=\"Share\"/>";
+      printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["storyid"] );
+      echo "</form>";
+      echo "<form action=\"storypage.php\" method=\"post\">";
+      echo "<input type=\"submit\" name=\"storyid\" value=\"Save for Later\"/>";
+      printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["storyid"] );
       echo "</form></td>";
       echo "</tr>";
     }
