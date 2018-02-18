@@ -68,7 +68,7 @@ if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 	$_SESSION['uid'] = $user_id;
   $_SESSION['user'] = $user;
   $_SESSION['token']= bin2hex(openssl_random_pseudo_bytes(32));
-  header ('Location:home.php');
+  header ('Location: home.php');
 
 } else{
 	// Login failed; redirect back to the login screen
