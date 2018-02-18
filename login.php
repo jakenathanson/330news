@@ -50,7 +50,7 @@ require 'database.php';
 
 
 // Use a prepared statement
-$stmt = $mysqli->prepare("SELECT COUNT(*), uid, password FROM users WHERE username=?");
+$stmt = $mysqli->prepare("SELECT COUNT(*), uid, password, email FROM users WHERE username=?");
 
 // Bind the parameter
 $stmt->bind_param('s', $user);
@@ -58,7 +58,7 @@ $user = $_POST['username'];
 $stmt->execute();
 
 // Bind the results
-$stmt->bind_result($cnt, $user_id, $pwd_hash);
+$stmt->bind_result($cnt, $user_id, $pwd_hash, $email);
 $stmt->fetch();
 
 $pwd_guess = $_POST['password'];
@@ -68,6 +68,7 @@ if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 	// Login succeeded!
 	$_SESSION['uid'] = $user_id;
   $_SESSION['user'] = $user;
+  $_SESSION['email'] = $email;
   $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));.
   header ('Location: home.php');
 
