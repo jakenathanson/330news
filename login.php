@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" href="main.css">
   </head>
 
+  <?php session_destroy(); ?>
+
   <ul>
     <li style="float:left"><a class="active" href="#about">330news</a></li>
     <li style="float:right"><a class="active" href="register.php">Register</a></li>
@@ -42,7 +44,9 @@ Please Login If You Would Like To Post and Comment
 
 
  <?php
- session_destroy();
+ error_reporting(0);
+
+ //session_destroy();
  session_start();
 // This is a *good* example of how you can implement password-based user authentication in your web application.
 

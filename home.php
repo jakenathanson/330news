@@ -10,7 +10,7 @@
 
 
   session_start();
-  if ($_SESSION['uid']){
+  if (isset($_SESSION['uid'])){
     echo '<li style="float:right; background-color: red;"><a class="active" href="login.php">Logout</a></li>';
     echo '<li style="float:right; background-color: green;"><a class="active" href="post-story.php">Post a Story</a></li>';
   } else {
@@ -23,6 +23,8 @@
 </ul>
 
 <div id="storytable">
+
+  <?php printf("<br><br><br>%s", $_SESSION['uid']); ?>
 
 <?php
 echo '<table style="width:100%">';
@@ -55,7 +57,7 @@ while($row = $result->fetch_assoc()){
   printf("<th>%s</th>",$row["author"]);
   echo "<th><form action=\"storypage.php\" method=\"post\">";
   echo "<input type=\"submit\" name=\"storyid\" value=\"Read\"/>";
-  printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["author"] );
+  printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["storyid"] );
   echo "</form></th>";
   echo "</tr>";
 }

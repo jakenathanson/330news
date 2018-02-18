@@ -17,7 +17,12 @@
 require 'database.php';
 session_start();
 
-$storyID = 1;
+if (isset($_POST['storyid'])) {
+  $_SESSION['currStory'] = $_POST['storyid'];
+}
+
+$storyID = $_SESSION['currStory'];
+
 
 $stmt = $mysqli->prepare("select title, author, authorid, date, body, link from stories where storyid=?");
 if (!$stmt) {
@@ -32,14 +37,18 @@ $stmt->close();
 
 echo("<div id=\"articledisplay\" class=\"article\">");
 printf("<div id=\"headline\" class=\"article\">%s</div>", $title);
-printf("<div id=\"date\" class=\"article\">Posted on: %s</div>", $date);
+printf("<div id=\"date\" class=\"article\"><br>Posted on: %s</div>", $date);
 printf("<div id=\"author\" class=\"article\">By: %s<br><br></div>", $author);
 printf("<div id=\"articlebody\" class=\"article\">%s<br><br></div>", $body);
 
 echo("<div id=\"actions\">");
 if (isset($_SESSION['uid'])) {
   if ($_SESSION['uid'] == $authorid) {
-    echo("<a href=\"editstory.php\">Edit</a>");
+    echo("<form action=\"edit-story.php\" method=\"post\">");
+    printf("<input type=\"hidden\" name=\"title\" value=\"%s\">", $title);
+    printf("<input type=\"hidden\" name=\"body\" value=\"%s\">", $body);
+    printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
+    printf("<input type=\"hidden\" name=\"link\" value=\"%s\">", $link);
     echo("<a href=\"removestory.php\">Delete</a>");
   }
   echo("Submit a comment");
