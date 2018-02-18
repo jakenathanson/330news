@@ -18,7 +18,7 @@ if(!$stmt){
  printf("Query Prep Failed: %s\n", $mysqli->error);
  exit;
 }
-$stmt->bind_param('i', $_SESSION['id']);
+$stmt->bind_param('i', $_POST['id']);
 $stmt->execute();
 $stmt->bind_result($storyName);
 $stmt->fetch();

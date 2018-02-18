@@ -57,17 +57,20 @@
       echo "<td><form action=\"storypage.php\" method=\"post\">";
       echo "<input type=\"submit\" name=\"storyid\" value=\"Read\"/>";
       printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["storyid"] );
+      printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       echo "</form>";
       if (isset($_SESSION['uid'])) {
       echo "<form action=\"save_share.php\" method=\"post\">";
       echo "<input type=\"submit\" name=\"storyid\" value=\"Share\"/>";
       printf("<input type=\"hidden\" name=\"whatAction\" value=\"share\">");
       printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["storyid"]);
+      printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       echo "</form>";
       echo "<form action=\"save_share.php\" method=\"post\">";
       echo "<input type=\"submit\" name=\"storyid\" value=\"Save for Later\"/>";
       printf("<input type=\"hidden\" name=\"whatAction\" value=\"save\">");
       printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">",$row["storyid"]);
+      printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       echo "</form>";
     }
       echo "</td></tr>";
