@@ -14,12 +14,14 @@
 <br><br><br><br>
 <?php
 
-error_reporting(0);
+//error_reporting(0);
 
 require 'database.php';
 session_start();
-if(!hash_equals($_SESSION['token'], $_POST['token'])){
-	die("Request forgery detected");
+if (!empty($_POST)) {
+  if(!hash_equals($_SESSION['token'], $_POST['token'])){
+  	die("Request forgery detected");
+  }
 }
 
 // if user accesses a new story, update the session storyid

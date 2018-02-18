@@ -9,6 +9,7 @@
   <div>
     <form action="edit-comment-database.php" method="post">
     <?php
+    session_start();
     if(!hash_equals($_SESSION['token'], $_POST['token'])){
     	die("Request forgery detected");
     }

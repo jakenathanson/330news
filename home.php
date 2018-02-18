@@ -11,6 +11,14 @@
 
     session_start();
 
+
+
+    if (!empty($_POST)) {
+      if(!hash_equals($_SESSION['token'], $_POST['token'])){
+      	die("Request forgery detected");
+      }
+    }
+
     // if visitor is logged in, show "post story" and "logout" buttons
     if (isset($_SESSION['uid'])){
       echo '<li style="float:right; background-color: red;"><a class="active" href="destroy.php">Logout</a></li>';
@@ -19,6 +27,7 @@
     } else { // otherwise, show "login" and "register"
       echo'<li style="float:right; background-color: green;"" ><a class="active" href="register.php">Register</a></li>';
       echo'<li style="float:right; background-color: green;"" ><a class="active" href="login.php">Login</a></li>';
+      $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
     }
     ?>
 
