@@ -78,26 +78,26 @@ $stmt->execute();
 // Bind the results
 $stmt->bind_result($cnt, $pwd_hash);
 $stmt->fetch();
+$stmt->close();
 
 // Compare the submitted password to the old password
 if($cnt == 1 && password_verify($oldP, $pwd_hash)){
   // Confirm user entered same new password
   if ((strcmp($first, $second) == 0)) {
     //update new pass
-
     $hash=password_hash($first, PASSWORD_BCRYPT);
 
-    $stmt = $mysqli->prepare("update users set password=? where uid=?");
-    if(!$stmt){
+    $nstmt = $mysqli->prepare("update users set password=? where uid=?");
+    if(!$nstmt){
     	printf("Query Prep Failed: %s\n", $mysqli->error);
     	exit;
     }
 
-    $stmt->bind_param('si', $hash, $uid);
+    $nstmt->bind_param('si', $hash, $uid);
 
-    $stmt->execute();
+    $nstmt->execute();
 
-    $stmt->close();
+    $nstmt->close();
 
 
     echo("<script>alert(\"PASSWORD UPDATED!\"); </script>");
