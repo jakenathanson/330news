@@ -6,6 +6,7 @@
 
   <ul>
     <?php
+    error_reporting(0);
     session_start();
     if ($_SESSION['uid']){
       echo '<li style="float:right; background-color: red;"><a class="active" href="login.php">Logout</a></li>';
@@ -19,7 +20,7 @@
 
   </ul>
 
-<?php session_start();
+<?php error_reporting(0); session_start();
 $uid=$_SESSION['uid'];?>
 
 
@@ -69,6 +70,8 @@ Posting as <?php echo $_SESSION['user'];?>
 
  <?php
 
+ //error_reporting(0);
+
  require 'database.php';
  date_default_timezone_set('America/Chicago');
 
@@ -81,7 +84,7 @@ Posting as <?php echo $_SESSION['user'];?>
  $link = $_POST['link'];
  $clicks=null;
 
- printf("author: %s\n authorid: %s\n date: %s\n body: %s\n title: %s\n link: %s\n clicks: %s\n", $author, $authorid, $date, $body, $title, $link, $clicks);
+ //printf("author: %s\n authorid: %s\n date: %s\n body: %s\n title: %s\n link: %s\n clicks: %s\n", $author, $authorid, $date, $body, $title, $link, $clicks);
 
 
  $stmt = $mysqli->prepare("insert into stories (author, authorid, date, body, title, clicks, link) values (?, ?, ?, ?, ?, ?,?)");
@@ -91,10 +94,24 @@ Posting as <?php echo $_SESSION['user'];?>
  }
 
  $stmt->bind_param('sisssis', $author, $authorid,$date,$body,$title,$clicks,$link);
-
  $stmt->execute();
-
  $stmt->close();
+
+ $stmt = $mysqli->prepare("select storyid from stories order by storyid desc limit 1");
+ if(!$stmt){
+ 	printf("Query Prep Failed: %s\n", $mysqli->error);
+ 	exit;
+ }
+ $stmt->execute();
+ $stmt->bind_result($lastRowID);
+ $stmt->fetch();
+ $stmt->close();
+
+ $_SESSION['currStory'] = $lastRowID + 1;
+ echo("this is also a test");
+ echo($lastRowID);
+ echo("this is a test");
+ //header('Location: storypage.php');
 
 
  ?>

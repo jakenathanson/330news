@@ -14,6 +14,8 @@
 <br><br><br><br>
 <?php
 
+error_reporting(0);
+
 require 'database.php';
 session_start();
 
@@ -46,16 +48,15 @@ echo("<div id=\"actions\">");
 //echo($authorid);
 if (isset($_SESSION['uid'])) {
   if ($_SESSION['uid'] == $authorid) {
-    echo("<form action=\"edit-story.php\" method=\"post\">");
+    echo("<form action=\"edit-story.php\" method=\"post\" class=\"commentAction\">");
     echo("<input type=\"submit\" value=\"Edit\">");
     printf("<input type=\"hidden\" name=\"title\" value=\"%s\">", $title);
     printf("<input type=\"hidden\" name=\"body\" value=\"%s\">", $body);
     printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
     printf("<input type=\"hidden\" name=\"link\" value=\"%s\"></form>", $link);
-    echo("<form action=\"delete-story.php\" method\"post\">");
+    echo("<form action=\"delete-story.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete your story?')\" class=\"commentAction\">");
     echo("<input type=\"submit\" value=\"Remove\">");
-    printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
-    echo("</form>");
+    printf("<input type=\"hidden\" name=\"thestoryid\" value=\"%s\"></form><br><br>", $storyID);
   }
   echo("Submit a comment");
   echo("<form action=\"post-comment.php\" method=\"post\">");

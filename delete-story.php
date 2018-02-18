@@ -2,9 +2,11 @@
 
 require 'database.php';
 
-$storyID = $_POST['storyid'];
+$storyID = $_POST['thestoryid'];
 
-$stmt = $mysqli-prepare("delete from stories where storyid=?");
+echo($storyID);
+
+$stmt = $mysqli->prepare("delete from stories where storyid=?");
 $stmt->bind_param('i', $storyID);
 $stmt->execute();
 $stmt->close();
