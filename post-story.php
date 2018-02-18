@@ -74,10 +74,12 @@ Posting as <?php echo $_SESSION['user'];?>
  <?php
 
  require 'database.php';
+ date_default_timezone_set('America/Chicago');
+
 
  $author=$_SESSION['user'];
  $authorid=$_SESSION['uid'];
- $date=date('l jS \of F Y h:i:s A');
+ $date=date('m/d/Y');
  $body = $_POST['body'];
  $title = $_POST['title'];
  $link = $_POST['link'];
