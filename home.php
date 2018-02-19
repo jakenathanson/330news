@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" type="text/css" href="main.css">
+  <title>Home</title>
+  <meta charset="UTF-8">
 </head>
 
 <body>
@@ -23,8 +25,8 @@
       echo '<li style="float:right; background-color: green;"><a class="active" href="post-story.php">Post a Story</a></li>';
       echo '<li style="float:right; background-color: yellow;"><a class="active" href="account.php"> My Account</a></li>';
     } else { // otherwise, show "login" and "register"
-      echo'<li style="float:right; background-color: green;"" ><a class="active" href="register.php">Register</a></li>';
-      echo'<li style="float:right; background-color: green;"" ><a class="active" href="login.php">Login</a></li>';
+      echo'<li style="float:right; background-color: green;" ><a class="active" href="register.php">Register</a></li>';
+      echo'<li style="float:right; background-color: green;" ><a class="active" href="login.php">Login</a></li>';
       $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
     }
     ?>
@@ -35,6 +37,7 @@
   <div id="storytable">
 
     <?php
+    //create table
     echo '<table style="width:100%">';
     echo "<tr>";
     echo "<th>Title</th>";
@@ -57,6 +60,10 @@
 
     // iteratively generate html table with database contents
     while($row = $result->fetch_assoc()){
+
+      //santize with purell
+      $row["title"]=htmlentities($row["title"]);
+      $row["author"]=htmlentities($row["author"]);
       echo "<tr>";
       printf("<td>%s</td>",$row["title"]);
       printf("<td>%s</td>",$row["author"]);
