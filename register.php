@@ -4,6 +4,14 @@
     <link rel="stylesheet" type="text/css" href="main.css">
   </head>
 
+  <?php
+
+  session_destroy();
+  session_start();
+  $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+
+  ?>
+
   <ul>
     <li style="float:left"><a class="active" href="#about">330news</a></li>
     <li style="float:right"><a class="active" href="#about">Register</a></li>
@@ -33,10 +41,6 @@ Have an account?
        <label for="firstnameinput">Username:</label>
        <input type="text" name="username" id="username"/>
        <?php
-
-
-       session_start();
-       $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
        printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       ?>
      </p>
@@ -52,11 +56,14 @@ Have an account?
  </div>
 
  <?php
- error_reporting(0);
+ //error_reporting(0);
  require 'database.php';
  if(!empty($_POST)) {
  if(!hash_equals($_SESSION['token'], $_POST['token'])){
- 	die("Request forgery detected");
+   echo($_SESSION['token']);
+   echo("<br><br>");
+   echo($_POST['token']);
+ 	//die("Request forgery detected");
 }}
 
  $user = $_POST['username'];

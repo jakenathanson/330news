@@ -116,7 +116,9 @@ Posting as <?php echo $_SESSION['user'];?>
  echo($lastRowID);
 
  $_SESSION['currStory'] = ($lastRowID);
+ if (!empty($_POST['title']) && !empty($_POST['body'])) {
  header('Location: storypage.php');
+}
 
  ?>
 
