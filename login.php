@@ -5,6 +5,8 @@
     <title>Login</title>
   </head>
 
+<body>
+
   <ul>
     <li style="float:left"><a class="active" href="#about">330news</a></li>
     <li style="float:right"><a class="active" href="register.php">Register</a></li>
@@ -12,16 +14,14 @@
   </ul>
 
 
-<body>
-
 
   <div id="message">
 <h1> Welcome to the 330 News Site</h1>
-<br>
+
 
 Please Login If You Would Like To Post and Comment
-  </p>
 
+</div>
 
 
   <div id="loginbox">
@@ -40,7 +40,7 @@ Please Login If You Would Like To Post and Comment
    </form>
  </div>
 
-
+</body>
  <?php
  error_reporting(0);
  session_start();
@@ -80,7 +80,7 @@ if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
 
 
 
-</body>
+
 
 
 </html>
