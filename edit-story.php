@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <title>Edit Story</title>
+    <meta charset="UTF-8">
   </head>
 
   <ul>
@@ -48,7 +50,7 @@ Posting as <?php echo $_SESSION['user'];?>
         <h2> Title: </h2>
        <input type="text" name="title" id="title" value="<?php echo $_POST['title']; ?>" required/>
        <?php
-       
+
        printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       ?>
      </p>
