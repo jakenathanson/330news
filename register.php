@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <title>Register</title>
+    <meta charset="UTF-8">
   </head>
 
   <?php
@@ -12,15 +14,15 @@
 
   ?>
 
+
+
+
+
   <ul>
     <li style="float:left"><a class="active" href="#about">330news</a></li>
     <li style="float:right"><a class="active" href="#about">Register</a></li>
     <li style="float:right"><a class="active" href="#about">Login</a></li>
   </ul>
-
-
-<body>
-
 
 <div id="message">
 <h1> Welcome to the 330 News Site</h1>
@@ -29,23 +31,25 @@ Please Register If You Would Like To Post Stories and Comment
 <br>
 <br>
 Have an account?
-<button><a href="login.php"> Go to Login </a></button>
+<form action="login.php">
+    <input type="submit" value="Go to Login" />
+</form>
 
-  </p>
+
 </div>
 
 
   <div id="loginbox">
   <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
      <p>
-       <label for="firstnameinput">Username:</label>
+       Username:
        <input type="text" name="username" id="username"/>
        <?php
        printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       ?>
      </p>
      <p>
-       <label for="firstnameinput">Password:</label>
+       Password:
        <input type="Password" name="password" id="password"/>
      </p>
 
@@ -84,7 +88,7 @@ Have an account?
  ?>
 
 
-</body>
+
 
 
 </html>
