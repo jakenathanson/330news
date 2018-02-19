@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" type="text/css" href="main.css">
+  <title>Account</title>
+  <meta charset="UTF-8">
 </head>
 
 <body>
@@ -30,8 +32,8 @@
 
       Change username
       <form action="changeusername.php" method="post" id="usernameform">
-        <label for="newName">New username: </label><input type="text" name="newUsername1" required><br>
-        <label for="newNameConfirm">Confirm new username: </label><input type="text" name="newUsername2" required><br>
+        New username: <input type="text" name="newUsername1" required><br>
+        Confirm new username: <input type="text" name="newUsername2" required><br>
         <input type="submit" value="Go">
       </form>
       <br><br>
@@ -40,9 +42,9 @@
     <div id="passwordchange">
       Change password
       <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post" id="pwdform">
-        <label for="oldPwd">Old password: </label><input type="text" name="oldPwd" required><br>
-        <label for="newPwd1">New password: </label><input type="password" name="newPwd1" required><br>
-        <label for="newNameConfirm">Confirm new password: </label><input type="password" name="newPwd2" required><br>
+        Old password: <input type="text" name="oldPwd" required><br>
+        New password: <input type="password" name="newPwd1" required><br>
+        Confirm new password: <input type="password" name="newPwd2" required><br>
         <input type="submit" value="Go">
       </form>
       <br><br>
@@ -55,14 +57,14 @@
       echo htmlentities($_SESSION['email']); ?> </h2>
       Update email address
       <form action="updateemail.php" method="post" id="emailform">
-        <label for="newEmail1">New email address: </label><input type="email" name="newEmail1"><br>
-        <label for="newEmail1">Confirm email address: </label><input type="email" name="newEmail2"><br>
+        New email address: <input type="email" name="newEmail1"><br>
+        Confirm email address: <input type="email" name="newEmail2"><br>
         <input type="submit" value="go">
       </form>
     </div>
 
   </div>
-</div>
+
 
 <?php
 // For infosec we decided to process passwords on same page
