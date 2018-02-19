@@ -23,7 +23,7 @@
     if (isset($_SESSION['uid'])){
       echo '<li style="float:right; background-color: red;"><a class="active" href="destroy.php">Logout</a></li>';
       echo '<li style="float:right; background-color: green;"><a class="active" href="post-story.php">Post a Story</a></li>';
-      echo '<li style="float:right; background-color: yellow;"><a class="active" href="account.php"> My Account</a></li>';
+      echo '<li style="float:right; background-color: black;"><a class="active" href="account.php"> My Account</a></li>';
     } else { // otherwise, show "login" and "register"
       echo'<li style="float:right; background-color: green;" ><a class="active" href="register.php">Register</a></li>';
       echo'<li style="float:right; background-color: green;" ><a class="active" href="login.php">Login</a></li>';
