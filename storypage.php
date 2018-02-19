@@ -6,11 +6,14 @@
   <title>330 News</title>
 </head>
 
-<ul>
-  <li><a href="home.php">Back</a></li>
-</ul>
+
 
 <body>
+
+  <ul>
+    <li><a href="home.php">Back</a></li>
+  </ul>
+
   <br><br><br><br>
   <?php
 
@@ -45,14 +48,17 @@
   $stmt->close();
 
   // display header information
+
+
+
   echo("<div id=\"articledisplay\" class=\"article\">");
-  printf("<div id=\"headline\" class=\"article\">%s</div>", $title);
-  printf("<div id=\"date\" class=\"article\"><br>Posted on: %s</div>", $date);
-  printf("<div id=\"author\" class=\"article\">By: %s<br><br></div>", $author);
+  printf("<div id=\"headline\" class=\"article\">%s</div>", htmlentities($title));
+  printf("<div id=\"date\" class=\"article\"><br>Posted on: %s</div>",htmlentities($date));
+  printf("<div id=\"author\" class=\"article\">By: %s<br><br></div>", htmlentities($author));
   if (!empty($link)) {
-    printf("<div id=\"link\" class=\"article\">External link: <a href=\"%s\">%s</a><br><br></div>", $link, $link);
+    printf("<div id=\"link\" class=\"article\">External link: <a href=\"%s\">%s</a><br><br></div>", htmlentities($link),htmlentities($link));
   }
-  printf("<div id=\"articlebody\" class=\"article\">%s<br><br></div>", $body);
+  printf("<div id=\"articlebody\" class=\"article\">%s<br><br></div>", htmlentities($body));
 
   echo("<div id=\"actions\">");
   // if visitor is logged in...
@@ -62,11 +68,11 @@
       // display form to edit or remove the story
       echo("<form action=\"edit-story.php\" method=\"post\" class=\"commentAction\">");
       echo("<input type=\"submit\" value=\"Edit\">");
-      printf("<input type=\"hidden\" name=\"title\" value=\"%s\">", $title);
-      printf("<input type=\"hidden\" name=\"body\" value=\"%s\">", $body);
+      printf("<input type=\"hidden\" name=\"title\" value=\"%s\">", htmlentities($title));
+      printf("<input type=\"hidden\" name=\"body\" value=\"%s\">", htmlentities($body));
       printf("<input type=\"hidden\" name=\"storyid\" value=\"%s\">", $storyID);
       printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
-      printf("<input type=\"hidden\" name=\"link\" value=\"%s\"></form>", $link);
+      printf("<input type=\"hidden\" name=\"link\" value=\"%s\"></form>", htmlentities($link));
       echo("<form action=\"delete-story.php\" method=\"post\" onsubmit=\"return confirm('Are you sure you want to delete your story?')\" class=\"commentAction\">");
       echo("<input type=\"submit\" value=\"Remove\">");
       printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
@@ -112,7 +118,7 @@
         printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form>", $commentID);
         echo("<form action=\"edit-comment.php\" method=\"post\" class=\"commentAction\">");
         echo("<input type=\"submit\" name=\"button\" value=\"Edit\">");
-        printf("<input type=\"hidden\" name=\"commentcontent\" value=\"%s\">", $text);
+        printf("<input type=\"hidden\" name=\"commentcontent\" value=\"%s\">", htmlentities($text));
         printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
         printf("<input type=\"hidden\" name=\"commentID\" value=\"%s\"></form><br><br>", $commentID);
         echo("</div>");
