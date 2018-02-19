@@ -50,6 +50,7 @@ Have an account?
 
  <?php
  error_reporting(0);
+ $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
  require 'database.php';
  if(!empty($_POST)) {
  if(!hash_equals($_SESSION['token'], $_POST['token'])){
