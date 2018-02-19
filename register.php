@@ -33,7 +33,10 @@ Have an account?
        <label for="firstnameinput">Username:</label>
        <input type="text" name="username" id="username"/>
        <?php
+
+
        session_start();
+       $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
        printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       ?>
      </p>
@@ -50,7 +53,6 @@ Have an account?
 
  <?php
  error_reporting(0);
- $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
  require 'database.php';
  if(!empty($_POST)) {
  if(!hash_equals($_SESSION['token'], $_POST['token'])){
