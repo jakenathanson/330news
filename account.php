@@ -11,11 +11,11 @@
 
     session_start();
 
-    // if visitor is logged in, show "post story" and "logout" buttons
+    // if visitor is logged in, show "home" and "logout" buttons
     if (isset($_SESSION['uid'])){
       echo '<li style="float:right; background-color: red;"><a class="active" href="destroy.php">Logout</a></li>';
       echo '<li style="float:right; background-color: green;"><a class="active" href="home.php">Home</a></li>';
-    } else { // otherwise, show "login" and "register"
+    } else { // otherwise, they shouldent be here and need to go home
       header('Location: home.php');
     }
     ?>
@@ -26,7 +26,7 @@
   <div id="account_data">
 
     <div id="usernamechange">
-      <h2> Current Username:<?php echo $_SESSION['user'] ?> </h2>
+      <h2> Current Username:<?php echo htmlentities($_SESSION['user']); ?> </h2>
 
       Change username
       <form action="changeusername.php" method="post" id="usernameform">
@@ -52,7 +52,7 @@
 
       <h2> Current Email:<?php
       error_reporting(0);
-      echo $_SESSION['email']; ?> </h2>
+      echo htmlentities($_SESSION['email']); ?> </h2>
       Update email address
       <form action="updateemail.php" method="post" id="emailform">
         <label for="newEmail1">New email address: </label><input type="email" name="newEmail1"><br>

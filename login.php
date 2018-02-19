@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <title>Login</title>
   </head>
 
   <ul>
@@ -23,15 +24,14 @@ Please Login If You Would Like To Post and Comment
 
 
 
-
   <div id="loginbox">
   <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
      <p>
-       <label for="firstnameinput">Username:</label>
+       <label for="username">Username:</label>
        <input type="text" name="username" id="username"/>
      </p>
      <p>
-       <label for="firstnameinput">Password:</label>
+       <label for="password">Password:</label>
        <input type="Password" name="password" id="password"/>
      </p>
      <p>
@@ -62,6 +62,7 @@ $stmt->bind_result($cnt, $user_id, $pwd_hash, $email);
 $stmt->fetch();
 
 $pwd_guess = $_POST['password'];
+
 // Compare the submitted password to the actual password hash
 
 if($cnt == 1 && password_verify($pwd_guess, $pwd_hash)){
