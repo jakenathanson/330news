@@ -11,6 +11,11 @@ if(!hash_equals($_SESSION['token'], $_POST['token'])){
 // get appropriate story id from php post
 $storyID = $_POST['thestoryid'];
 
+$stmt = $mysqli->prepare("delete from comments where loc=?");
+$stmt->bind_param('i', $storyID);
+$stmt->execute();
+$stmt->close();
+
 // delete story from the database
 $stmt = $mysqli->prepare("delete from stories where storyid=?");
 $stmt->bind_param('i', $storyID);
