@@ -27,11 +27,11 @@ Please Login If You Would Like To Post and Comment
   <div id="loginbox">
   <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
      <p>
-       <label for="username">Username:</label>
+       <label for="username" class="blinky">Username:</label>
        <input type="text" name="username" id="username"/>
      </p>
      <p>
-       <label for="password">Password:</label>
+       <label for="password" class="blinky">Password:</label>
        <input type="Password" name="password" id="password"/>
      </p>
      <p>

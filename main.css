@@ -43,7 +43,7 @@ li a:hover {
 /* end w3 css help */
 
 body {
-  background-color: grey;
+  background-color: #F1F1F1;
 }
 
 #loginbox {
@@ -51,7 +51,11 @@ body {
   margin: 0 auto;
   width: 100%;
   text-align: center;
-  color: white;
+  color: black;
+}
+
+.blinky {
+  color: black;
 }
 
 #message {
@@ -59,7 +63,7 @@ body {
   margin: 0 auto;
   width: 100%;
   text-align: center;
-  color: white;
+  color: black;
 }
 
 #body {
@@ -72,10 +76,16 @@ body {
 
 th {
   font-size: 16pt;
+  border-bottom: 1px solid #ddd;
 }
 
 tr {
   text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
 }
 
 #storytable {

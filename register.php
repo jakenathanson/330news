@@ -7,7 +7,7 @@
   </head>
 
   <?php
-
+  error_reporting(0);
   session_destroy();
   session_start();
   $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
@@ -20,8 +20,8 @@
 
   <ul>
     <li style="float:left"><a class="active" href="#about">330news</a></li>
-    <li style="float:right"><a class="active" href="#about">Register</a></li>
-    <li style="float:right"><a class="active" href="#about">Login</a></li>
+    <li style="float:right"><a class="active" href="home.php">Home</a></li>
+    <li style="float:right"><a class="active" href="login.php">Login</a></li>
   </ul>
 
 <div id="message">
@@ -60,7 +60,7 @@ Have an account?
  </div>
 
  <?php
- //error_reporting(0);
+ error_reporting(0);
  require 'database.php';
  if(!empty($_POST)) {
  if(!hash_equals($_SESSION['token'], $_POST['token'])){
@@ -79,12 +79,14 @@ Have an account?
  	printf("Query Prep Failed: %s\n", $mysqli->error);
  	exit;
  }
-
  $stmt->bind_param('ss', $user, $hash);
-
  $stmt->execute();
-
  $stmt->close();
+
+ if(!empty($_POST['username']) && !empty($_POST['password'])) {
+   header('Location: login.php');
+ }
+
  ?>
 
 
