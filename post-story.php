@@ -2,31 +2,34 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="main.css">
+    <title>Post Story</title>
+    <meta charset="UTF-8">
   </head>
-
-  <ul>
-    <?php
-    error_reporting(0);
-    session_start();
-    if ($_SESSION['uid']){
-      echo '<li style="float:right; background-color: red;"><a class="active" href="login.php">Logout</a></li>';
-      echo '<li style="float:right; background-color: green;"><a class="active" href="home.php">Home</a></li>';
-    } else {
-      header ('Location: home.php');
-    }
-    ?>
-
-    <li style="float:left"><a class="active" href="#about">330news</a></li>
-
-  </ul>
-
-<?php error_reporting(0); session_start();
-$uid=$_SESSION['uid'];?>
 
 
 
 
 <body>
+
+
+    <ul>
+      <?php
+      error_reporting(0);
+      session_start();
+      if ($_SESSION['uid']){
+        echo '<li style="float:right; background-color: red;"><a class="active" href="login.php">Logout</a></li>';
+        echo '<li style="float:right; background-color: green;"><a class="active" href="home.php">Home</a></li>';
+      } else {
+        header ('Location: home.php');
+      }
+      ?>
+
+      <li style="float:left"><a class="active" href="#about">330news</a></li>
+
+    </ul>
+
+  <?php error_reporting(0); session_start();
+  $uid=$_SESSION['uid'];?>
 
 
 <div id="message">
@@ -35,27 +38,27 @@ Posting as <?php echo $_SESSION['user'];?>
 
 
 
-  </p>
+  
 </div>
 
 
   <div id="post-story">
   <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST" id="story-post">
-     <p>
+
         <h2> Title: </h2>
        <input type="text" name="title" id="title" required/>
        <?php
        session_start();
        printf("<input type=\"hidden\" name=\"token\" value=\"%s\">", $_SESSION['token']);
       ?>
-     </p>
-     <p>
+
+
        <h2> Optional Link:  Must be "https://"</h2>
        <input type="text" name="link" id="link"/>
-     </p>
+
      <h2> Story goes here: </h2>
      <textarea rows="10" cols="100" name="body" form="story-post" required></textarea>
-     <p>
+
        <input type="submit" value="Click to Post" style="position: fixed;
        bottom: 0px;
        left: 0px;
@@ -67,7 +70,7 @@ Posting as <?php echo $_SESSION['user'];?>
        vertical-align: middle;
 
        "/>
-     </p>
+
 
    </form>
  </div>
